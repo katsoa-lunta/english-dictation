@@ -1,0 +1,179 @@
+@import 'https://fonts.googleapis.cn/css2?family=Lexend:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap';
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-correct: var(--correct);
+  --color-correct-soft: var(--correct-soft);
+  --color-wrong: var(--wrong);
+  --color-wrong-soft: var(--wrong-soft);
+  --color-paper-line: var(--paper-line);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --font-sans:
+    'Lexend', 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+}
+
+:root {
+  --radius: 0.875rem;
+  /* 听写本纸张色系 */
+  --background: #fbf7ee;
+  --foreground: #2e2a24;
+  --card: #ffffff;
+  --card-foreground: #2e2a24;
+  --popover: #ffffff;
+  --popover-foreground: #2e2a24;
+  --primary: #e8a33d;
+  --primary-foreground: #3d2c14;
+  --secondary: #f3ecdd;
+  --secondary-foreground: #2e2a24;
+  --muted: #f0eadb;
+  --muted-foreground: #8a8378;
+  --accent: #f7f0e0;
+  --accent-foreground: #2e2a24;
+  --destructive: #d96c57;
+  --border: #e9e2d2;
+  --input: #e9e2d2;
+  --ring: #e8a33d;
+  /* 对错反馈色 */
+  --correct: #4f9d69;
+  --correct-soft: #e6f2e9;
+  --wrong: #d96c57;
+  --wrong-soft: #fae9e5;
+  --paper-line: #ede4ce;
+  --chart-1: #e8a33d;
+  --chart-2: #4f9d69;
+  --chart-3: #d96c57;
+  --chart-4: #8a8378;
+  --chart-5: #f3ecdd;
+  --sidebar: #fbf7ee;
+  --sidebar-foreground: #2e2a24;
+  --sidebar-primary: #e8a33d;
+  --sidebar-primary-foreground: #3d2c14;
+  --sidebar-accent: #f3ecdd;
+  --sidebar-accent-foreground: #2e2a24;
+  --sidebar-border: #e9e2d2;
+  --sidebar-ring: #e8a33d;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+body {
+  @apply font-sans;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ============ 纸张动效：只用 transform / opacity ============ */
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-8px);
+  }
+  40% {
+    transform: translateX(8px);
+  }
+  60% {
+    transform: translateX(-5px);
+  }
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.85) translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes sound-wave {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+@utility animate-shake {
+  animation: shake 0.4s ease-out;
+}
+
+@utility animate-pop-in {
+  animation: pop-in 0.25s ease-out both;
+}
+
+@utility animate-sound-wave {
+  animation: sound-wave 1.2s ease-out infinite;
+}
+
+/* 听写输入区：横线本纸纹 */
+.paper-lines {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 35px,
+    var(--paper-line) 35px,
+    var(--paper-line) 36px
+  );
+}
