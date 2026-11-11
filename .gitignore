@@ -163,3 +163,6 @@ Desktop.ini
 # Misc
 .coze-logs
 .codegraph/
+
+# WorkBuddy 本地工作数据
+.workbuddy/
